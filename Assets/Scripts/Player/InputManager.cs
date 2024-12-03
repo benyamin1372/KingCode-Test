@@ -33,6 +33,8 @@ public class InputManager : MonoBehaviour
         CameraController.Ins.SwitchTo3rd();
         UIController.Ins.SetActiveJoy(false);
         PlayerController.Ins.PlayerInput.SwitchCurrentActionMap("Player WASD");
+        PlayerController.Ins.PlayerInput.ActivateInput();
+
         PlayerController.Ins.joyMode = false;
 
     }
@@ -41,6 +43,7 @@ public class InputManager : MonoBehaviour
         CameraController.Ins.SwitchToTopDown();
         UIController.Ins.SetActiveJoy(false);
         PlayerController.Ins.PlayerInput.SwitchCurrentActionMap("Player Tap");
+        PlayerController.Ins.PlayerInput.ActivateInput();
         PlayerController.Ins.joyMode = false;
 
 
@@ -50,6 +53,8 @@ public class InputManager : MonoBehaviour
         CameraController.Ins.SwitchTo3rd();
         UIController.Ins.SetActiveJoy(true);
         PlayerController.Ins.PlayerInput.SwitchCurrentActionMap("Player Joy");
+        PlayerController.Ins.PlayerInput.ActivateInput();
+
         PlayerController.Ins.joyMode = true;
 
     }

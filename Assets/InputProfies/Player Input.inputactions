@@ -162,8 +162,17 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "7e6f1c0f-f15a-4265-8847-b11320c7d333",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "0a187933-6141-41a7-beac-3d4135117a6f",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -174,11 +183,22 @@
                 {
                     "name": "",
                     "id": "c017e5ab-25d7-44c7-9dcf-c4aae9f9e874",
-                    "path": "<Joystick>/stick",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "StickDeadzone(min=0.8)",
-                    "groups": "Joystick;Gamepad;Touch",
+                    "processors": "",
+                    "groups": "Gamepad;Keyboard&Mouse",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0fc8b18-36f0-4143-b501-cd1ffa77180a",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Keyboard&Mouse",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

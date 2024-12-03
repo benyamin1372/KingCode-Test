@@ -16,7 +16,7 @@ public class CameraHandler : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, finalPos, followSpeed * Time.deltaTime);
 
-        if (rotateWithPlayer)
+        if (rotateWithPlayer && !PlayerController.Ins.joyMode)
         {
 
             transform.rotation= Quaternion.Lerp(transform.rotation,target.rotation, Time.deltaTime);

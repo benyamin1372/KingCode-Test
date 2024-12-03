@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
         Ins = this;
     }
     //
-
+    public bool joyMode;
     public PlayerInput PlayerInput => playerInput;
     
     [SerializeField] private PlayerInput playerInput;
@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
         transform.position += moveDir * (moveSpeed * Time.deltaTime);
 
         transform.rotation = Quaternion.LookRotation(moveDir);
+
+        if (!Mouse.current.leftButton.isPressed && joyMode)
+            _moveInput = Vector3.zero;
     }
 
     #endregion

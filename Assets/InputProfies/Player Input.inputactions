@@ -162,7 +162,7 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "7e6f1c0f-f15a-4265-8847-b11320c7d333",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -174,10 +174,10 @@
                 {
                     "name": "",
                     "id": "c017e5ab-25d7-44c7-9dcf-c4aae9f9e874",
-                    "path": "<AndroidJoystick>/stick",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad;Keyboard&Mouse;Touch;Joystick",
+                    "processors": "StickDeadzone(min=0.8)",
+                    "groups": "Joystick;Gamepad;Touch",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false

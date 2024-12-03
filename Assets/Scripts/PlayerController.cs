@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,26 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 1;
-    private Vector2 _moveInput;
+    //Mini Singleton ;)
+    public static PlayerController Ins;
+    private void Awake()
+    {
+        Ins = this;
+    }
+    //
+
+    public PlayerInput PlayerInput => playerInput;
     
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private float moveSpeed = 1;
+    [SerializeField] private LayerMask walkableLayer;
+    private Vector2 _moveInput;
+
+    #region WASD / Joy Move
+
     public void OnMove(InputValue inputValue)
     {
+
         _moveInput = inputValue.Get<Vector2>();
         Debug.Log(_moveInput);
 
@@ -17,26 +33,47 @@ public class PlayerController : MonoBehaviour
         
         
     }
+    
     private void Update()
     {
         if (_moveInput == Vector2.zero)
             return;
+
+        var camEuler = Camera.main.transform.eulerAngles;
+        camEuler.x = 0;
         
-        var moveDir = transform.rotation * new Vector3(_moveInput.x, 0, _moveInput.y);
+        var moveDir = Quaternion.Euler(camEuler) * new Vector3(_moveInput.x, 0, _moveInput.y) ;
 
         transform.position += moveDir * (moveSpeed * Time.deltaTime);
+
+        transform.rotation = Quaternion.LookRotation(moveDir);
     }
 
+    #endregion
+    
+
+    #region Hit And Go Move
+
+    public void OnTap(InputValue inputValue)
+    {
+        Debug.Log("tapped");
+        var mousePos = Mouse.current.position.ReadValue();
+        
+        Ray ray = CameraController.Ins.MainCam.ScreenPointToRay(mousePos);
+        
+        // Debug.DrawRay(ray.origin,ray.direction*100);
+        // Debug.Break();
+
+        if (Physics.Raycast(ray,out var  hit,1000,walkableLayer))
+        {
+            MoveToTarget(hit.point);
+        }
+
+}
     public void MoveToTarget(Vector3 pos)
     {
         StopCoroutine(nameof(MoveToTargetSequence));
         StartCoroutine(nameof(MoveToTargetSequence),pos);
-    }
-
-
-    public void OnTap(InputValue inputValue)
-    {
-        Debug.Log(inputValue.Get<Vector2>());
     }
     IEnumerator MoveToTargetSequence(Vector3 pos)
     {
@@ -54,4 +91,13 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+    
+    #endregion
+
+    // private void LateUpdate()
+    // {
+    //     Ray ray = Camera.main.ScreenPointToRay(Pointer.current.position.value);
+    //     
+    //     Debug.DrawRay(ray.origin,ray.direction*1000,Color.red);
+    // }
 }

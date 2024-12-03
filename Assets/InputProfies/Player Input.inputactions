@@ -2,7 +2,7 @@
     "name": "Player Input",
     "maps": [
         {
-            "name": "PlayerWASD",
+            "name": "Player WASD",
             "id": "0c523824-87ba-45a0-b70d-4ce8fcdf143a",
             "actions": [
                 {
@@ -118,7 +118,7 @@
             ]
         },
         {
-            "name": "PlayerTap",
+            "name": "Player Tap",
             "id": "8f6002a4-f54b-42b7-81a6-2f522d5f52df",
             "actions": [
                 {
@@ -134,12 +134,51 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "8f982f6e-56e2-4f28-8fa9-ec6a41a8cc2d",
-                    "path": "<Pointer>/position",
+                    "id": "bb4a516b-8402-48bc-87f7-2f0f9b34c00a",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad4983d9-3644-442f-9f1a-97d3651e3ee7",
+                    "path": "<Touchscreen>/touch*/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch;Gamepad;Keyboard&Mouse",
+                    "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player Joy",
+            "id": "06ca0b6f-c82f-4af2-9d56-80d27a40ab67",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "7e6f1c0f-f15a-4265-8847-b11320c7d333",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c017e5ab-25d7-44c7-9dcf-c4aae9f9e874",
+                    "path": "<AndroidJoystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Keyboard&Mouse;Touch;Joystick",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

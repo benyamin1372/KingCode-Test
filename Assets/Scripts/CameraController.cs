@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    
+    public Camera MainCam { get; set; }
     //Mini Singleton ;)
     public static CameraController Ins;
     private void Awake()
@@ -20,11 +20,21 @@ public class CameraController : MonoBehaviour
     {
         camera3rd.gameObject.SetActive(true);
         cameraTopDown.gameObject.SetActive(false);
+
+        MainCam = camera3rd.cam;
     }
     
     public void SwitchToTopDown()
     {
         camera3rd.gameObject.SetActive(false);
         cameraTopDown.gameObject.SetActive(true);
+        MainCam = cameraTopDown.cam;
+
+    }
+
+
+    private void Update()
+    {
+        
     }
 }

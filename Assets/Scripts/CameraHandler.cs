@@ -5,15 +5,21 @@ using UnityEngine;
 
 public class CameraHandler : MonoBehaviour
 {
-    [SerializeField] private float followSpeed = 10;
-    [SerializeField] private Vector3 offset ;
-    [SerializeField] private Transform target ;
+    public  float followSpeed = 10;
+    public  Transform target ;
+    public  bool rotateWithPlayer ;
+    public Camera cam;
 
-
-    public void LateUpdate()
+    public virtual void LateUpdate()
     {
-        var finalPos = target.position + offset;
+        var finalPos = target.position ;
 
         transform.position = Vector3.Lerp(transform.position, finalPos, followSpeed * Time.deltaTime);
+
+        if (rotateWithPlayer)
+        {
+
+            transform.rotation= Quaternion.Lerp(transform.rotation,target.rotation, Time.deltaTime);
+        }
     }
 }
